@@ -5,18 +5,11 @@
         static void Main(string[] args)
         {
             double a = readNumber("first");
-            if (a == -1)
-            {
-                return;
-            }
             double b = readNumber("second");
-            if (b == -1)
-            {
-                return;
-            }
             double c = readNumber("third");
-            if (c == -1)
+            if (a == 0 || b == 0 || c == 0)
             {
+                Console.WriteLine("Invalid number");
                 return;
             }
             if (isTriangle(a, b, c))
@@ -42,16 +35,12 @@
         {
             Console.WriteLine("Enter " + str + " number :");
             double a = 0;
-            bool b = double.TryParse(Console.ReadLine(), out a);
-            if (b && a > 0)
+            double.TryParse(Console.ReadLine(), out a);
+            if(a < 0)
             {
-                return a;
+                a = 0;
             }
-            else
-            {
-                Console.WriteLine("invalid number");
-                return -1;
-            }
+            return a;
         }
     }
 }
