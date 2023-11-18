@@ -7,7 +7,7 @@
             Console.Write("Enter a number: ");
             int number = 0;
             bool b = int.TryParse(Console.ReadLine(), out number); 
-            if(b && number >= 1)
+            if(b)
             {
                 for(int i = 1; i <= number; i++)
                 {

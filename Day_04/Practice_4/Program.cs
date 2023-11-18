@@ -7,7 +7,7 @@
             Console.Write("Enter a number: ");
             int number = 0;
             bool b = int.TryParse(Console.ReadLine(), out number);
-            if(b && number > 0)
+            if(b)
             {
                 int sum = 0;
                 for(int i = 1; i <= number; i++)
@@ -17,7 +17,10 @@
                         sum += i;
                     }
                 }
-                Console.WriteLine($"Sum of odd numbers from 1 to {number} is {sum}");
+                if(number >= 1)
+                {
+                    Console.WriteLine($"Sum of odd numbers from 1 to {number} is {sum}");
+                }
             } 
             else
             {

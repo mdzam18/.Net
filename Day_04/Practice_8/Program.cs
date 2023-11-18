@@ -7,12 +7,13 @@
             Console.Write("Enter a number: ");
             int number = 0;
             bool b = int.TryParse(Console.ReadLine(), out number);
+            int curr = number;
             if(b && number > 0)
             {
-                String result = "";
-                while(number != 0)
+                string result = "";
+                while(curr != 0)
                 {
-                    if(number % 2 == 0)
+                    if(curr % 2 == 0)
                     {
                         result = "0" + result;
                     }
@@ -20,7 +21,7 @@
                     {
                         result = "1" + result;
                     }
-                    number /= 2;
+                    curr /= 2;
                 }
                 Console.WriteLine($"decimal {number} in binary is {result}");
             }
