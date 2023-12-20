@@ -24,7 +24,7 @@
 
         public override string ToString()
         {
-            return AuthorFullName + " " + BookName + " " + ReleaseYear + " " + ISBN + " " + GenreType;
+            return String.Format("{0} {1} {2} {3} {4}", AuthorFullName, BookName, ReleaseYear, ISBN, GenreType);
         }
 
     }
