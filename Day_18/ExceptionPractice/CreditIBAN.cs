@@ -10,13 +10,13 @@
 
         public void DepositMoney(decimal amount)
         {
+            if (amount < 0 || Limit < 0)
+            {
+                throw new NegativeAmountException();
+            }
             if (amount > Limit)
             {
                 throw new LimitIsIncreasedException();
-            }
-            if (amount < 0)
-            {
-                throw new NegativeAmountException();
             }
             Balance += amount;
         }

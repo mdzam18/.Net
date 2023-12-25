@@ -12,6 +12,10 @@
         {
             _IBAN = iban;
             CheckIBAN();
+            if (balance < 0 || limit < 0)
+            {
+                throw new NegativeAmountException();
+            }
             _Balance = balance;
             _Limit = limit;
         }
@@ -36,6 +40,10 @@
             }
             set
             {
+                if (value < 0)
+                {
+                    throw new NegativeAmountException();
+                }
                 _Balance = value;
             }
         }
@@ -48,6 +56,10 @@
             }
             set
             {
+                if (value < 0)
+                {
+                    throw new NegativeAmountException();
+                }
                 _Limit = value;
             }
         }
