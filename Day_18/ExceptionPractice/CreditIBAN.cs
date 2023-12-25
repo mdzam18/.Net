@@ -3,10 +3,7 @@
     internal class CreditIBAN : IBAN
     {
 
-        public CreditIBAN(string iban, decimal balance, decimal limit) : base(iban, balance, limit)
-        {
-
-        }
+        public CreditIBAN(string iban, decimal balance, decimal limit) : base(iban, balance, limit) { }
 
         public void DepositMoney(decimal amount)
         {

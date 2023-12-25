@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
             DebitIBAN debitIBAN = new DebitIBAN("GE12345678912345678912", 100, 20);
