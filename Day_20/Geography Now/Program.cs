@@ -5,8 +5,10 @@
 
         static void Main(string[] args)
         {
-            string logFilePath = "C:\\Users\\Mariami\\source\\repos\\MariamDzamukashvili\\Day_20\\Geography Now\\Logs.txt";
-            string citiesFilePath = "C:\\Users\\Mariami\\source\\repos\\MariamDzamukashvili\\Day_20\\Geography Now\\Cities.txt";
+            string currentDirectory = Directory.GetCurrentDirectory();
+            currentDirectory = currentDirectory.Substring(0, currentDirectory.IndexOf("bin"));
+            string logFilePath = currentDirectory + "Logs.txt";
+            string citiesFilePath = currentDirectory + "Cities.txt";
             using (StreamWriter writer = new StreamWriter(logFilePath))
             {
                 writer.Write("");
