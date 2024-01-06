@@ -67,6 +67,7 @@
         {
             Console.WriteLine("1. Search Country");
             Console.WriteLine("2. Search City");
+            Console.WriteLine("\nEnter digit '1' or '2'");
             int choise;
             if (!int.TryParse(Console.ReadLine(), out choise))
             {

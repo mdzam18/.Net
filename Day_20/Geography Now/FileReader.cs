@@ -25,7 +25,7 @@ namespace Geography_Now
                     string[] info = line.Split("|", StringSplitOptions.RemoveEmptyEntries);
                     if (line == "")
                     {
-                        break;
+                        continue;
                     }
                     if (info.Length < 5)
                     {
