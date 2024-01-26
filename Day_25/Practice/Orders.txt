@@ -1,0 +1,20 @@
+1|20201212|Coca-cola|3.0|1
+2|20201111|Pepsi|3.0|2
+3|20200909|Staropramen|4.0|2
+4|20201212|Argo|2.0|3
+5|20211212|Fanta|3.0|1
+6|20201111|Sprite|3.0|2
+7|20200910|New York Burger|20|2
+8|20201212|5 Cheece Burger|30|5
+9|20211212|Chicago Burger|24.9|3
+10|20201111|West Burger|21|4
+11|20200909|Mr Burger|32|3
+12|20201212|Jack Daniels Burger|32|4
+13|20201212|Kind Burger|22|1
+14|20201111|Angry Burger|24|5
+15|20200909|Mexican Burger|22.5|2
+16|20201112|Georgian Burger|23|3
+17|20201212|American Burger|20.5|4
+18|20200811|Big Mac|12|4
+19|20200909|Big Tasty|15.8|5
+20|20201012|McFresh|11.3|3

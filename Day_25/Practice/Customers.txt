@@ -1,0 +1,5 @@
+1|Sokka
+2|Aang
+3|Toph
+4|Zuko
+5|Katara
