@@ -13,10 +13,15 @@ namespace Forum.Domain.Topics
 
         public string Content { get; set; }
 
-        public List<Comment> Comments { get; set; } 
+        public List<Comment> Comments { get; set; }
 
-        //Navigation Property
+        public DateTime CreateDate { get; set; }
+
         public User User { get; set; }
+
+        public Status Status{ get; set; }
+
+        public State State { get; set; }
 
     }
 }

@@ -2,11 +2,6 @@
 using Forum.Domain.Topics;
 using Forum.Domain.Users;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Forum.Persistence.Context
 {

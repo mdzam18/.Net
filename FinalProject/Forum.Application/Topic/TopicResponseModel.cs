@@ -1,5 +1,5 @@
-﻿using Forum.Application.Comments;
-using Forum.Application.Users;
+﻿using Forum.Domain.Topics;
+using System.Text.Json.Serialization;
 
 namespace Forum.Application.Topics
 {
@@ -13,9 +13,12 @@ namespace Forum.Application.Topics
 
         public string Content { get; set; }
 
-        //Navigation Property
-        public UserResponseModel User { get; set; }
+        public DateTime CreateDate { get; set; }
 
-        public List<CommentResponseModel> Comments { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public Status Status { get; set; }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public State State { get; set; }
     }
 }

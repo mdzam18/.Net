@@ -9,6 +9,7 @@
         Task<UserResponseModel> Get(CancellationToken cancellationToken, int id);
         Task Update(CancellationToken cancellationToken, UserRequestModel user);
         Task Delete(CancellationToken cancellationToken, int id);
+        Task UnbanAllUsers(CancellationToken cancellationToken);
 
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace ToDo.Infrastructure
+namespace Forum.Infrastructure
 {
     public class BaseRepository<T> where T : class
     {
@@ -21,9 +21,20 @@ namespace ToDo.Infrastructure
             return await _dbSet.ToListAsync(token);
         }
 
+        public async Task<List<T>> GetAllAsync(CancellationToken token, Expression<Func<T, bool>> func)
+        {
+            return await _dbSet.Where(func).ToListAsync(token);
+        }
+
         public async Task<T> GetAsync(CancellationToken token, params object[] key)
         {
             var tracked = await _dbSet.FindAsync(key, token);
+            return tracked;
+        }
+        
+        public async Task<T> GetAsync(CancellationToken token, Expression<Func<T, bool>> func)
+        {
+            var tracked = await _dbSet.FirstOrDefaultAsync(func, token);
             return tracked;
         }
 

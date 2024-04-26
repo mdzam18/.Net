@@ -1,7 +1,6 @@
 ﻿using Forum.Application.Exceptions;
 using Forum.Domain.Users;
 using Mapster;
-using System.Threading;
 
 namespace Forum.Application.Users
 {
@@ -17,9 +16,11 @@ namespace Forum.Application.Users
 
         public async Task<string> AuthenticationAsync(CancellationToken cancellationToken, string email, string password)
         {
-            var result = await _repository.GetAsync(cancellationToken, email, password);
+            var result = await _repository.GetAsync(cancellationToken, email);
+            if (result.IsBanned)
+                throw new Exception("user is banned");
 
-            if (result == null)
+            if (result == null || !password.Equals(result.Password))
                 throw new IncorrectEmailOrPasswordException("email or password is incorrect");
 
             return result.Username;
@@ -65,6 +66,16 @@ namespace Forum.Application.Users
             var userToUpdate = user.Adapt<User>();
 
             await _repository.UpdateAsync(cancellationToken, userToUpdate);
+        }
+
+        public async Task UnbanAllUsers(CancellationToken cancellationToken)
+        {
+            var users = await _repository.GetAllAsync(cancellationToken, _ => _.IsBanned && _.BanDate < DateTime.UtcNow.AddDays(-7));
+            users.Select(_ => _.IsBanned =  false);
+            foreach(var user in users)
+            {
+                await _repository.UpdateAsync(cancellationToken, user);
+            }
         }
     }
 }

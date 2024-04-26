@@ -1,7 +1,6 @@
 ﻿using Forum.Application.Comments;
 using Forum.Domain.Comments;
 using Forum.Persistence.Context;
-using ToDo.Infrastructure;
 
 namespace Forum.Infrastructure.Comments
 {
@@ -41,6 +40,16 @@ namespace Forum.Infrastructure.Comments
         public async Task<bool> Exists(CancellationToken cancellationToken, int id)
         {
             return await base.AnyAsync(cancellationToken, x => x.Id == id);
+        }
+
+        public async Task<List<Comment>> GetAllByTopicIdAsync(CancellationToken cancellationToken, int topicId)
+        {
+            return await base.GetAllAsync(cancellationToken, x => x.TopicId == topicId); 
+        }
+
+        public async Task<List<Comment>> GetAllByUserIdAsync(CancellationToken cancellationToken, int userId)
+        {
+            return await base.GetAllAsync(cancellationToken, x => x.UserId == userId);
         }
     }
 }

@@ -38,11 +38,10 @@ namespace Forum.Api.Infrastructure
             //default
             Code = UnhandlerErrorCode;
             Status = (int)HttpStatusCode.InternalServerError;
-            Title = "მოხდა შეცდომა სერვერზე"; //TODO ეს მესიჯი არ უნდა ნახოს.
             LogLevel = LogLevel.Error;
             Instance = httpContext.Request.Path;
 
-            HandleException((dynamic)exception); //TODO
+            HandleException((dynamic)exception); 
         }
 
         private void HandleException(UserNotFoundException exception)

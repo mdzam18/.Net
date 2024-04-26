@@ -1,7 +1,6 @@
 ﻿using Forum.Application.Topics;
 using Forum.Domain.Topics;
 using Forum.Persistence.Context;
-using ToDo.Infrastructure;
 
 namespace Forum.Infrastructure.Topics
 {
@@ -25,6 +24,8 @@ namespace Forum.Infrastructure.Topics
 
         public async Task CreateAsync(CancellationToken cancellationToken, Topic topic)
         {
+            topic.Status = Status.Active;
+            topic.State = State.Pending;
             await base.AddAsync(cancellationToken, topic);
         }
 
@@ -41,6 +42,11 @@ namespace Forum.Infrastructure.Topics
         public async Task<bool> Exists(CancellationToken cancellationToken, int id)
         {
             return await base.AnyAsync(cancellationToken, x => x.Id == id);
+        }
+
+        public async Task<List<Topic>> GetAllByUserIdAsync(CancellationToken cancellationToken, int userId)
+        {
+            return await base.GetAllAsync(cancellationToken, x => x.UserId == userId);
         }
     }
 }

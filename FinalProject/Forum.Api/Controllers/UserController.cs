@@ -1,11 +1,13 @@
 ﻿using Forum.Api.Infrastructure.Auth.JWT;
 using Forum.Application.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 namespace Forum.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -13,9 +15,10 @@ namespace Forum.Api.Controllers
         private readonly IOptions<JWTConfiguration> _options;
 
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IOptions<JWTConfiguration> options)
         {
             _userService = userService;
+            _options = options;
         }
 
         [HttpGet]
@@ -36,7 +39,8 @@ namespace Forum.Api.Controllers
             await _userService.Delete(cancellationToken, id);
         }
 
-        [HttpPost]
+        [AllowAnonymous]
+        [HttpPost("Register")]
         public async Task Post(CancellationToken cancellationToken, UserCreateModel request)
         {
             await _userService.CreateAsync(cancellationToken, request);
@@ -48,7 +52,8 @@ namespace Forum.Api.Controllers
             await _userService.Update(cancellationToken, request);
         }
 
-        [Route("login")]
+        [AllowAnonymous]
+        [Route("Login")]
         [HttpPost]
         public async Task<string> LogIn(UserLoginModel user, CancellationToken cancellation = default)
         {

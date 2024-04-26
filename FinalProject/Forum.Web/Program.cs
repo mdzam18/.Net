@@ -2,7 +2,6 @@ using Forum.Persistence.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace Forum.Web
 {
@@ -15,7 +14,7 @@ namespace Forum.Web
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("PersonManagement.Web"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Forum.Web"));
             });
 
             builder.Services.AddIdentity<IdentityUser, IdentityRole>(option =>

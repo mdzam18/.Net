@@ -19,9 +19,14 @@ namespace Forum.Domain.Users
 
         public bool Gender { get; set; }
 
-        //Navigation properties
         public List<Topic> Topics { get; set; }
 
         public List<Comment> Comments { get; set; }
+
+        public bool IsBanned { get; set; }
+
+        public DateTime? BanDate { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }

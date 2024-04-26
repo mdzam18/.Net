@@ -79,12 +79,6 @@ namespace Forum.Web.Controllers
                 }
             }
 
-            //დამოკიდებულია იმაზე გვსურს თუ არა დარეგისტრირებული მომხმარებელი ავტომატურად დალოგინდეს
-            //if (result.Succeeded)
-            //{
-            //    //todo: 
-            //}
-
             return RedirectToAction(nameof(Login));
         }
 

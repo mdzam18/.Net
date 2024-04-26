@@ -9,7 +9,7 @@ namespace Forum.Api.Infrastructure.Extensions
         public static IServiceCollection AddTokenAuth(this IServiceCollection services, string key)
         {
             var keyBytes = Encoding.ASCII.GetBytes(key);
-
+            
             services.AddAuthentication(x =>
             {
                 x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -24,7 +24,7 @@ namespace Forum.Api.Infrastructure.Extensions
                     ValidAudience = "localhost",
                 }
             );
-
+            services.AddAuthorization();
             return services;
         }
     }

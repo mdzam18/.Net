@@ -1,7 +1,7 @@
 ﻿using Forum.Application.Users;
 using Forum.Domain.Users;
 using Forum.Persistence.Context;
-using ToDo.Infrastructure;
+using System.Linq.Expressions;
 
 namespace Forum.Infrastructure.Users
 {
@@ -18,9 +18,14 @@ namespace Forum.Infrastructure.Users
             return await base.GetAsync(cancellationToken, id);
         }
 
-        public async Task<List<User>> GetAllasync(CancellationToken cancellationToken)
+        public async Task<List<User>> GetAllAsync(CancellationToken cancellationToken)
         {
             return await base.GetAllAsync(cancellationToken);
+        }
+
+        public async Task<List<User>> GetAllAsync(CancellationToken cancellation, Expression<Func<User, bool>> func)
+        {
+            return await base.GetAllAsync(cancellation, func);
         }
 
         public async Task CreateAsync(CancellationToken cancellationToken, User user)
@@ -43,9 +48,9 @@ namespace Forum.Infrastructure.Users
             return await base.AnyAsync(cancellationToken, x => x.Id == id);
         }
 
-        public async Task<User> GetAsync(CancellationToken cancellationToken, string email, string password)
+        public async Task<User> GetAsync(CancellationToken cancellationToken, string email)
         {
-            return await base.GetAsync(cancellationToken, email, password);
+            return await base.GetAsync(cancellationToken, _ => _.Email.Equals(email));
         }
     }
 }

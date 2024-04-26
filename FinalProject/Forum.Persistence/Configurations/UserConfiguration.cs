@@ -10,11 +10,7 @@ namespace Forum.Persistence.Configurations
         {
             builder.HasKey(x => x.Id);
 
-            //isUnicode დეფოლტად არის true ამიტომ თუ არის varchar ან char სჯობს გავუწეროთ false
-
             builder.Property(x => x.Gender).IsRequired();
-
-            // builder.Property(x => x.BirthDate).HasColumnType("datetime");
 
             builder.HasIndex(x => x.Username).IsUnique();
 
@@ -28,18 +24,15 @@ namespace Forum.Persistence.Configurations
 
             builder.Property(x => x.Password).IsUnicode(false).IsRequired().HasMaxLength(50);
 
-            //  builder.HasMany(x => x.Topics).WithOne(x => x.User).OnDelete(DeleteBehavior.Cascade);
+            builder.Property(x => x.IsBanned).IsRequired();
 
-            //   builder.HasMany(x => x.Comments).WithOne(x => x.User).OnDelete(DeleteBehavior.Cascade);
-            builder.HasMany(x => x.Topics)
-              .WithOne(t => t.User)
-              .HasForeignKey(t => t.UserId)
-              .OnDelete(DeleteBehavior.Cascade);
+            builder.Property(x => x.BanDate).HasColumnType("datetime").IsRequired(false);
 
-            builder.HasMany(u => u.Comments)
-           .WithOne(c => c.User)
-           .HasForeignKey(c => c.UserId)
-           .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(x => x.IsAdmin).IsRequired();
+
+            builder.HasMany(x => x.Topics).WithOne(t => t.User).HasForeignKey(t => t.UserId).OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(u => u.Comments).WithOne(c => c.User).HasForeignKey(c => c.UserId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

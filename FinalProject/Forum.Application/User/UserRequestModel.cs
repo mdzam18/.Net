@@ -1,7 +1,4 @@
-﻿using Forum.Application.Comments;
-using Forum.Application.Topics;
-
-namespace Forum.Application.Users
+﻿namespace Forum.Application.Users
 {
     public class UserRequestModel
     {
@@ -19,8 +16,5 @@ namespace Forum.Application.Users
 
         public bool Gender { get; set; }
 
-        public List<TopicRequestModel> Topics { get; set; }
-
-        public List<CommentRequestModel> Comments { get; set; }
     }
 }

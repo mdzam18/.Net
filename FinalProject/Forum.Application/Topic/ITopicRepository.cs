@@ -5,6 +5,7 @@ namespace Forum.Application.Topics
     public interface ITopicRepository
     {
         Task<List<Topic>> GetAllAsync(CancellationToken cancellationToken);
+        Task<List<Topic>> GetAllByUserIdAsync(CancellationToken cancellationToken, int userId);
         Task<Topic> GetAsync(CancellationToken cancellationToken, int id);
         Task CreateAsync(CancellationToken cancellationToken, Topic topic);
         Task UpdateAsync(CancellationToken cancellationToken, Topic topic);

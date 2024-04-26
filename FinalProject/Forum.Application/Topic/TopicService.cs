@@ -18,6 +18,12 @@ namespace Forum.Application.Topics
         {
             var topicToInsert = topic.Adapt<Topic>();
 
+            if (topicToInsert.User.Topics == null)
+            {
+                topicToInsert.User.Topics = new List<Topic>();
+            }
+            topicToInsert.User.Topics.Add(topicToInsert);
+
             await _repository.CreateAsync(cancellationToken, topicToInsert);
         }
 
@@ -37,6 +43,16 @@ namespace Forum.Application.Topics
                 throw new TopicNotFoundException(id.ToString());
             else
                 return result.Adapt<TopicResponseModel>();
+        }
+
+        public async Task<List<TopicResponseModel>> GetByUserId(CancellationToken cancellationToken, int userId)
+        {
+            var result = await _repository.GetAllByUserIdAsync(cancellationToken, userId);
+
+            if (result == null)
+                throw new UserNotFoundException(userId.ToString());
+            else
+                return result.Adapt<List<TopicResponseModel>>();
         }
 
         public async Task<List<TopicResponseModel>> GetAll(CancellationToken cancellationToken)

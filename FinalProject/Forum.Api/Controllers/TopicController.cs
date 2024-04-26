@@ -1,9 +1,11 @@
 ﻿using Forum.Application.Topics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Forum.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class TopicController : ControllerBase
     {
@@ -15,9 +17,17 @@ namespace Forum.Api.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<List<TopicResponseModel>> GetAll(CancellationToken cancellationToken)
         {
             return await _topicService.GetAll(cancellationToken);
+        }
+
+        [HttpGet("User/{userId}")]
+        [AllowAnonymous]
+        public async Task<List<TopicResponseModel>> GetByUserId(CancellationToken cancellationToken, int userId)
+        {
+            return await _topicService.GetByUserId(cancellationToken, userId);
         }
 
         [HttpGet("{id}")]

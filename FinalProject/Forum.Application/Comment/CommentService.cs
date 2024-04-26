@@ -1,7 +1,5 @@
 ﻿using Forum.Application.Exceptions;
-using Forum.Application.Topics;
 using Forum.Domain.Comments;
-using Forum.Domain.Topics;
 using Mapster;
 
 namespace Forum.Application.Comments
@@ -48,14 +46,28 @@ namespace Forum.Application.Comments
             return result.Adapt<List<CommentResponseModel>>();
         }
 
+        public async Task<List<CommentResponseModel>> GetAllByTopicId(CancellationToken cancellationToken, int topicId)
+        {
+            var result = await _repository.GetAllByTopicIdAsync(cancellationToken, topicId);
+
+            return result.Adapt<List<CommentResponseModel>>();
+        }
+
+        public async Task<List<CommentResponseModel>> GetAllByUserId(CancellationToken cancellationToken, int userId)
+        {
+            var result = await _repository.GetAllByUserIdAsync(cancellationToken, userId);
+
+            return result.Adapt<List<CommentResponseModel>>();
+        }
+
         public async Task Update(CancellationToken cancellationToken, CommentRequestModel comment)
         {
-            //if (!await _repository.Exists(cancellationToken, comment.Id))
-            //    throw new TopicNotFoundException(comment.Id.ToString());
+            if (!await _repository.Exists(cancellationToken, comment.Id))
+                throw new CommentNotFoundException(comment.Id.ToString());
 
-            //var commentToUpdate = comment.Adapt<Comment>();
+            var commentToUpdate = comment.Adapt<Comment>();
 
-            //await _repository.UpdateAsync(cancellationToken, commentToUpdate);
+            await _repository.UpdateAsync(cancellationToken, commentToUpdate);
         }
     }
 }

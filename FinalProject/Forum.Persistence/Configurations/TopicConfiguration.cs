@@ -17,6 +17,12 @@ namespace Forum.Persistence.Configurations
             builder.HasMany(x => x.Comments).WithOne(x => x.Topic).OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(x => x.User).WithMany(x => x.Topics).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
+
+            builder.Property(x => x.CreateDate).HasColumnType("datetime").IsRequired();
+
+            builder.Property(x => x.Status).IsRequired().HasConversion<string>();
+
+            builder.Property(x => x.State).IsRequired().HasConversion<string>();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Forum.Api.Model.DTO;
-using Forum.Application.Comments;
+﻿using Forum.Application.Comments;
 using Forum.Application.Topics;
 using Forum.Application.Users;
 using Forum.Domain.Comments;
@@ -13,10 +12,6 @@ namespace Forum.Api.Infrastructure.Mapping
     {
         public static void RegisterMaps(this IServiceCollection services)
         {
-            TypeAdapterConfig<UserResponseModel, UserDTO>
-             .NewConfig()
-             .TwoWays();
-
             TypeAdapterConfig<UserRequestModel, User>
             .NewConfig()
             .TwoWays();
@@ -25,10 +20,6 @@ namespace Forum.Api.Infrastructure.Mapping
             .NewConfig()
             .TwoWays();
 
-            TypeAdapterConfig<TopicResponseModel, TopicDTO>
-             .NewConfig()
-             .TwoWays();
-
             TypeAdapterConfig<TopicRequestModel, Topic>
             .NewConfig()
             .TwoWays();
@@ -36,10 +27,6 @@ namespace Forum.Api.Infrastructure.Mapping
             TypeAdapterConfig<TopicRequestModel, TopicResponseModel>
             .NewConfig()
             .TwoWays();
-
-            TypeAdapterConfig<CommentResponseModel, CommentDTO>
-             .NewConfig()
-             .TwoWays();
 
             TypeAdapterConfig<CommentRequestModel, Comment>
             .NewConfig()
